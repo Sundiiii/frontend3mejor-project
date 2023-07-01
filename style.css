@@ -1,0 +1,60 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+nav{
+    height:40px;
+    background-color: black;
+    position:sticky;
+    color: aliceblue;
+    /* box-shadow:100px  blue; */
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.nav-div1{
+    margin-left: 20px;
+   
+}
+.nav-div2{
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+
+}
+.nav-options{
+    margin: 5px;
+
+}
+.meshop-text{
+    margin:10px 20px;
+    font-family:Arial, Helvetica, sans-serif ;
+    font-weight:100;
+}
+.login-signup-container{
+    /* display: flex;
+    flex-direction: column; */
+    /* justify-content: space-around; */
+}
+.x{
+    position:absolute;
+    margin: 20px 20px;
+     padding: 5px 15px; 
+     color: white;
+        background-color: rgb(4, 13, 13);
+}
+#signup1{  
+    position: absolute;
+     left:150px;
+  margin-top: 20px;
+    padding: 5px 15px;
+    color: rgb(11, 6, 6);
+    background-color: rgb(239, 243, 243);}
+ .img1{
+    position: absolute;
+    left:280px;
+    height:68vh;
+    width:80vw;
+} 
