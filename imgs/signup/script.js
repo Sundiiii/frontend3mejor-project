@@ -1,96 +1,118 @@
-const signupbtn = document.getElementById("Signupbtn");
-const firstname = document.getElementById("firstName");
-const lastname = document.getElementById("lastName");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const confirmpassword = document.getElementById("confirmpassword");
-const loginRedirect = document.getElementById("loginRedirect");
+let shop=document.getElementById("shop");
+let cart=document.getElementById("cart");
+let profile=document.getElementById("profile");
+let fname= document.getElementById("fname");
+let lname= document.getElementById("lname");
+let email= document.getElementById("email");
+let password= document.getElementById("password");
+let cpassword= document.getElementById("cpassword");
+let submitbtn= document.getElementById("submit-btn");
+let redirectToLogin =document.getElementById("redirectToLogin");
+let msg =document.querySelector(".msg");
 
+shop.addEventListener("click" ,()=>{
+    msg.innerText = "Error : Please login or signup to start shopping";
+    msg.style.color = "red";
+    setTimeout(()=>{
+        msg.innerText = "";
+    },5000);
+});
 
-function saveUser(firstn, lastn, emailvl, passwordvl) {
-    let userObj = {
-        Firstname: firstn,
-        Lastname: lastn,
-        Email: emailvl,
-        Passward: passwordvl,
-    };
-       // if (localStorage.getItem(users)) {
-    //     let users = JSON.parse(localStorage.getItem('users'));
-    //     users.push(userobj);
-    //     localStorage.setItem('users', JSON.stringify(users));
-    // }else{
-    //     user=[userobj];
-    //     localStorage.setItem('users',JSON.stringify(users));
-    // }
+cart.addEventListener("click" ,()=>{
+    msg.innerText = "Error : Please login or signup to view your cart";
+    msg.style.color = "red";
+    setTimeout(()=>{
+        msg.innerText = "";
+    },5000);
+});
 
-    // short code below from 16-24 for 21-28-->
-    let users= JSON.parse(localStorage.getItem("users"))||[];
-    users.push(userObj);
-    localStorage.setItem("users", JSON.stringify(users));
-    // afted signup->we are on profilepage so make sessionstorage for loggedinusers-->
-    sessionStorage.setItem("loggedinusers", JSON.stringify(userObj));
-    firstname.value="";lastname.value="";email.value="";password.value="";
-    confirmpassword.value="";
-    alert("you are Signedup successfully");
-    location.href="./loginpage";
-    // after signup successfully we need to go to profile page so do bellow-->
+profile.addEventListener("click" ,()=>{
+    msg.innerText = "Error : Please login or signup to view your profile";
+    msg.style.color = "red";
+    setTimeout(()=>{
+        msg.innerText = "";
+    },5000);
+});
+
+function saveuser(firstname,lastname,emailval,passwordval){
+let userobj={
+    firstname:firstname,
+    lastname:lastname,
+    email:emailval,
+    password:passwordval
+};
+let users = JSON.parse(localStorage.getItem("users")) || [];
+users.push(userobj);
+localStorage.setItem("users",JSON.stringify(users));
+sessionStorage.setItem("loggedInUser",JSON.stringify(userobj));
+fname.value ="";
+lname.value ="";
+email.value ="";
+password.value ="";
+cpassword.value ="";
+msg.innerHTML="Sign-up Successfull"
+    msg.style.color = "green";
+setTimeout(()=>{
+    msg.innerHTML="";
+   },3000);
+setTimeout(()=>{
+    window.location.href="../login/index.html";
+   },3000);
+// alert("Sign-up Successfull");
 
 }
-  
-function checkifuserisunique(email) {
-        let users = JSON.parse(localStorage.getItem("users" ));
-        let obj = users.find((userobj) => {
-            return userobj.Email === email;
-        });
-        if (obj) return true;else false;
+
+function checkIfUserExist(email){
+    let users = JSON.parse(localStorage.getItem("users"));
+    let obj = users.find((userobj)=>{
+        return userobj.email === email;
+    });
+    if(obj) return true;
+    else false;
+}
+
+
+submitbtn.addEventListener("click",(e)=>{
+    e.preventDefault();
+    if(fname.value.trim() === "" || lname.value.trim() === "" || email.value.trim() === "" || password.value.trim() === "" || cpassword.value.trim() === ""){
+        msg.innerHTML="All fields are required";
+            msg.style.color = "red";
+        setTimeout(()=>{
+            msg.innerHTML="";
+           },3000);
+        // alert("All fields are required");
     }
- 
-
-signupbtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    if (firstname.value.trim() === "" ||
-        lastname.value.trim() === "" ||
-        email.value.trim() === "" ||
-        password.value.trim() === "" ||
-        confirmpassword.value.trim() === "") {
-        alert("all fields are required");
-    } else {
-        // alert("all field don");
-        if (password.value.trim() !== confirmpassword.value.trim()) {
-            alert("passward not matching");
-            password.value = "";
-            confirmpassword.value = "";
-        } else {
-            if (localStorage.getItem("users")) {
-                if (checkifuserisunique(email.value)) {
-                    alert("email exist");
-                } else {
-                    saveUser(firstname.value, lastname.value, email.value, password.value);
-                    //     let userobj={
-                    //         Firstname:firstnameval,
-                    //         Lastname:lastnameval,
-                    //         Email:emailval,
-                    //         Passward:passwordval,
-                    //     }
-                    //    let  users=JSON.parse(localStorage.getItem('users'));
-                    //    users.push(userobj);
-                    //     localStorage.setItem('users',JSON.stringify(users));
+    else{
+        if(password.value !== cpassword.value){
+            msg.innerHTML="Password and Confirm Password does not match";
+                msg.style.color = "red";
+            setTimeout(()=>{
+                msg.innerHTML="";
+               },3000);
+            // alert("Password and Confirm Password does not match");
+            password.value="";
+            cpassword.value="";
+        }else{
+            if(localStorage.getItem("users")){
+                if(checkIfUserExist(email.value)){ 
+                    msg.innerHTML="User already exists.";
+                        msg.style.color = "red";    
+                    setTimeout(()=>{
+                        msg.innerHTML="";
+                       },3000);
+                    // alert("User already exists.");
                 }
-            } else {
-                saveUser(firstname.value, lastname.value, email.value, password.value);
-
-                // let userobj={
-                //     Firstname:firstnameval,
-                //     Lastname:lastnameval,
-                //     Email:emailval,
-                //     Passward:passwordval,
-                // }
-                // user=[userobj];
-                // localStorage.setItem('users',JSON.stringify(users));
+                else{
+                    saveuser(fname.value,lname.value,email.value,password.value);
+                }
+            }
+            else{
+                saveuser(fname.value,lname.value,email.value,password.value)
             }
         }
     }
 });
-loginRedirect.addEventListener('click',()=>{
-location.href="./loginpage";
+
+redirectToLogin.addEventListener("click", ()=>{
+window.location.href ="../login/index.html";
 });
