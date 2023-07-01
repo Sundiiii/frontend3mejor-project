@@ -27,7 +27,7 @@ profile.addEventListener("click" ,()=>{
 });
 
 login.addEventListener("click",()=>{
-    window.location.href="../login/index.html";
+    window.location.href="../imgs/login/index.html";
 });
 
 signup.addEventListener("click",()=>{
