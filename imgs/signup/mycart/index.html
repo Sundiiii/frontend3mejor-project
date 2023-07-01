@@ -1,44 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>mycart</title>
+    <title>Mycart</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="nav-div1">MeShop</div>
-        <div class="nav-div2">
-            <a href="">
-                <div class="nav-options">Home</div>
-            </a>
-            <a href="">
-                <div class="nav-options">login</div>
-            </a>
-            <a href="">
-                <div class="nav-options">SignUp</div>
-            </a>
-            <a href="">
-                <div class="nav-options">Mycart</div>
-            </a>
-            <a href="">
-                <div class="nav-options">profile</div>
-            </a>
+    <div class="nav">
+        <div class="logo-container">
+            <h3>Myshop</h3>
         </div>
-    </nav>
-    <div class="mycart"><h1>My cart</h1></div>
-    <div class="main">
-        <div class="left"></div>
-        <div class="right">
-            <h2>chekout list</h2>
-            <div class="items"></div>
-            <hr>
-            <div class="total">
-                <span>Total</span>
-                <span>Rs</span>
+        <div class="nav-item-container">
+            <div class="nav-item">
+                <a href="../shop/index.html" id="shop">Shop</a>
+                <a href="../Mycart/index.html" id="cart">Mycart</a>
+                <a href="../profile/index.html" id="profile">Profile</a>
             </div>
         </div>
     </div>
+    <h1 class="h1cart">My Cart</h1>
+    <div class="entireConatiner">
+        <div class="cartitems" id="Cartitems">
+            
+        </div>
+        <div class="checkout" id="Checkout">
+            <h2>Checkout List</h2>
+            <div class="productslist" id="Productslist">
+            </div>
+            <div class="total">
+                <div><span>Total</span><span id="spanTotal"></span></div>
+                <button onclick="clearcart()">Click to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
