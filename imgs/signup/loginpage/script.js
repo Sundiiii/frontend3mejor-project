@@ -1,34 +1,63 @@
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const loginbtn = document.getElementById("loginbtn");
-loginbtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    if (email.value.trim() === "" ||
-        password.value.trim() === "") {
-        alert("fill all field");
-    } else {
-        let users = JSON.parse(localStorage.getItem("users"));
+let emailid = document.getElementById("email");
+let password = document.getElementById("password");
+let loginbtn = document.getElementById("login-btn");
+let msg = document.querySelector(".msg");
+
+
+loginbtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (password.value.trim() === "" || emailid.value.trim() === "") {
+        msg.innerHTML = "please fill all the details"
+        msg.style.color = "red";
+        setTimeout(() => {
+            msg.innerHTML = "";
+        }, 3000);
+        // alert("Please fill all the details");
+    }
+    else {
+        let users = JSON.parse(localStorage.getItem("users"))
         if (users) {
-            let user = users.find((currentuser) => {
-                return currentuser.Email === email.value.trim();
+            let currentuser = users.find((currentuser) => {
+                return emailid.value.trim() === currentuser.email;
             });
-            if (user) {
-                if (password.value.trim() === user.Passward
-                ) {
-                    //if psw and email is save in localstorage take to profile page-->
-                    sessionStorage.setItem('loggedinusers', JSON.stringify("user"));
-                    // location.href = "../profile";
-                    location.href = "../shop";
-                    alert("login successfully");
+            if (currentuser) {
+                if (password.value.trim() === currentuser.password) {
+                    sessionStorage.setItem("loggedInUser", JSON.stringify(currentuser));
+                    msg.innerHTML = "Log in successfull"
+                    msg.style.color = "green";
+                    setTimeout(() => {
+                        msg.innerHTML = "";
+                    }, 3000);
+                    window.location.href = "../shop/index.html";
+                    
+                    // alert("log in successfull");
                 }
                 else {
-                    alert("incorrect passward");
+                    msg.innerHTML = "Incorrect password"
+                    msg.style.color = "red";
+                    setTimeout(() => {
+                        msg.innerHTML = "";
+                    }, 3000);
+                    // alert("incorrect password");
                 }
-            } else {
-                alert("you have not signed-up");
             }
-        } else {
-            alert("you have not signed-up");
+            else {
+                msg.innerHTML = "User does not exist"
+                msg.style.color = "red";
+                setTimeout(() => {
+                    msg.innerHTML = "";
+                }, 3000);
+                window.location.href = "../Sign-up/index.html";
+                // alert("user does not exist");
+            }
+        }
+        else {
+            msg.innerHTML = "User does not exist"
+            msg.style.color = "red";
+            setTimeout(() => {
+                msg.innerHTML = "";
+            }, 3000);
+            // alert("user does not exist");
         }
     }
-})
+});
