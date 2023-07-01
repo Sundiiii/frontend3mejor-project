@@ -6,21 +6,21 @@ let login=document.getElementById("Login");
 let signup=document.getElementById("SignUp");
 
 shop.addEventListener("click" ,()=>{
-    errordiv.innerText = "Error : Please login or signup to start shopping";
+    errordiv.innerText = "Error : Please login or signup ";
     setTimeout(()=>{
         errordiv.innerText = "";
     },5000);
 });
 
 cart.addEventListener("click" ,()=>{
-    errordiv.innerText = "Error : Please login or signup to view your cart";
+    errordiv.innerText = "Error : Please login or signup";
     setTimeout(()=>{
         errordiv.innerText = "";
     },5000);
 });
 
 profile.addEventListener("click" ,()=>{
-    errordiv.innerText = "Error : Please login or signup to view your profile";
+    errordiv.innerText = "Error : Please login or signup";
     setTimeout(()=>{
         errordiv.innerText = "";
     },5000);
